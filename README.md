@@ -1,5 +1,9 @@
 # TaskFlow
 
+<p align="center">
+  <img src="public/logo.png" alt="TaskFlow Logo" width="120" />
+</p>
+
 A modern, self-hosted Kanban task manager with a clean REST API, drag-and-drop UI, and zero build step. Single binary deploy, SQLite storage, runs anywhere Node.js runs.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
