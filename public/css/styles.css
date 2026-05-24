@@ -70,9 +70,25 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--primary);
+  font-weight: 700;
+  font-size: 17px;
+}
+.brand-text {
+  letter-spacing: -0.01em;
+}
+.brand-task {
+  color: #4f46e5;
+}
+[data-theme="dark"] .brand-task {
+  color: #6366f1;
+}
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .brand-task {
+    color: #6366f1;
+  }
+}
+.brand-flow {
+  color: #10b981;
 }
 .topbar-actions { display: flex; gap: 8px; align-items: center; }
 
