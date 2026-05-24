@@ -1,0 +1,15 @@
+services:
+  taskflow:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - taskflow-data:/data
+    environment:
+      - PORT=3000
+      - DB_PATH=/data/tasks.db
+      # - AUTH_TOKEN=change-me
+    restart: unless-stopped
+
+volumes:
+  taskflow-data:

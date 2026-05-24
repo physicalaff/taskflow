@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TaskFlow — self-hosted Kanban task manager" />
+  <title>TaskFlow</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='6' height='14' x='4' y='5' rx='1' fill='%234f46e5'/%3E%3Crect width='6' height='10' x='14' y='5' rx='1' fill='%2310b981'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body data-theme="auto">
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <rect width="6" height="14" x="4" y="5" rx="1" fill="currentColor" />
+        <rect width="6" height="10" x="14" y="5" rx="1" fill="currentColor" opacity="0.6" />
+      </svg>
+      <span>TaskFlow</span>
+    </div>
+    <div class="topbar-actions">
+      <input id="search" type="search" placeholder="Search (press /)" autocomplete="off" />
+      <button id="new-task-btn" class="btn primary" title="New task (n)">+ New task</button>
+      <button id="theme-toggle" class="btn icon" title="Toggle theme (t)" aria-label="Toggle theme">◐</button>
+      <button id="menu-btn" class="btn icon" title="Menu" aria-label="Menu">≡</button>
+    </div>
+  </header>
+
+  <main id="board" class="board" aria-live="polite"></main>
+
+  <div id="menu" class="menu hidden" role="menu">
+    <button data-action="export">Export JSON</button>
+    <button data-action="import">Import JSON</button>
+    <button data-action="shortcuts">Shortcuts (?)</button>
+    <a href="https://github.com/physicalaff/taskflow" target="_blank" rel="noopener">GitHub</a>
+  </div>
+
+  <dialog id="task-dialog" class="dialog">
+    <form method="dialog" id="task-form">
+      <h2 id="dialog-title">New task</h2>
+      <label>Title<input name="title" required maxlength="500" /></label>
+      <label>Description<textarea name="description" rows="4" maxlength="10000"></textarea></label>
+      <div class="row">
+        <label>Status
+          <select name="status">
+            <option value="todo">To do</option>
+            <option value="doing">Doing</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <label>Priority
+          <select name="priority">
+            <option value="0">None</option>
+            <option value="1" selected>Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+        </label>
+        <label>Due<input type="date" name="dueAt" /></label>
+      </div>
+      <label>Tags (comma separated)<input name="tags" placeholder="backend, urgent" /></label>
+      <div class="dialog-actions">
+        <button type="button" id="delete-btn" class="btn danger hidden">Delete</button>
+        <button type="button" id="cancel-btn" class="btn">Cancel</button>
+        <button type="submit" class="btn primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="shortcuts-dialog" class="dialog">
+    <h2>Keyboard shortcuts</h2>
+    <ul class="kbd-list">
+      <li><kbd>n</kbd> New task</li>
+      <li><kbd>/</kbd> Focus search</li>
+      <li><kbd>t</kbd> Toggle theme</li>
+      <li><kbd>?</kbd> Show this help</li>
+      <li><kbd>Esc</kbd> Close dialogs</li>
+    </ul>
+    <form method="dialog"><button class="btn">Close</button></form>
+  </dialog>
+
+  <input id="import-file" type="file" accept="application/json" hidden />
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
